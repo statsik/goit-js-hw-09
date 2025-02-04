@@ -27,11 +27,24 @@ email.addEventListener("mouseup", (event) => {
   email.value = originalEmail;
 })
 
+function loadFormData() {
+  const savedData = localStorage.getItem("feedback-form-state");
+  if (savedData) {
+    const parsedData = JSON.parse(savedData);
+    formData.email = parsedData.email;
+    formData.message = parsedData.message;
+
+    email.value = formData.email;
+    message.value = formData.message;
+  }
+}
+
+loadFormData();
 
 form.addEventListener("submit", (event) => {
   event.preventDefault();
 
-  if (message.inputMessage === "" || email.inputEmail === "") {
+  if (formData.email === "" || formData.message === "") {
     alert("Fill please all fields");
   }
 
