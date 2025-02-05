@@ -31,8 +31,8 @@ function loadFormData() {
   const savedData = localStorage.getItem("feedback-form-state");
   if (savedData) {
     const parsedData = JSON.parse(savedData);
-    formData.email = parsedData.email;
-    formData.message = parsedData.message;
+    formData.email = parsedData.email || "";
+    formData.message = parsedData.message || "";
 
     email.value = formData.email;
     message.value = formData.message;
@@ -46,11 +46,12 @@ form.addEventListener("submit", (event) => {
 
   if (formData.email === "" || formData.message === "") {
     alert("Fill please all fields");
+    return;
   }
 
   console.log(formData);
+
   form.reset();
   formData.email = "";
   formData.message = "";
-
 })
