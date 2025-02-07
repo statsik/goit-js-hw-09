@@ -19,14 +19,6 @@ message.addEventListener("input", (event) => {
   localStorage.setItem("feedback-form-state", JSON.stringify(formData));
 })
 
-const originalEmail = email.value;
-email.addEventListener("mousedown", (event) => {
-  email.value = "Type area";
-})
-email.addEventListener("mouseup", (event) => {
-  email.value = originalEmail;
-})
-
 function loadFormData() {
   const savedData = localStorage.getItem("feedback-form-state");
   if (savedData) {
@@ -50,8 +42,8 @@ form.addEventListener("submit", (event) => {
   }
 
   console.log(formData);
-
   form.reset();
+  localStorage.removeItem("feedback-form-state");
   formData.email = "";
   formData.message = "";
 })
